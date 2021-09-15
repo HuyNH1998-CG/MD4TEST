@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="home :: css">
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1 th:if="${message}" th:text="${message}"></h1>
+    </div>
+    <div class="row">
+        <h1>Create City</h1>
+    </div>
+    <div class="row">
+        <form method="post" th:object="${city}">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" th:field="*{name}"></td>
+                    <td><p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></p></td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td><select th:field="*{country}">
+                        <option th:each="country : ${countries}" th:value="${country.id}"
+                                th:text="${country.name}"
+                                th:selected="(${country.name}) and (${country.id} == *{country.id})"></option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <th>Size</th>
+                    <td><input type="text" th:field="*{size}"></td>
+                    <td><p th:if="${#fields.hasErrors('size')}" th:errors="*{size}" style="color: red"></p></td>
+                </tr>
+                <tr>
+                    <th>Population</th>
+                    <td><input type="text" th:field="*{population}"></td>
+                    <td><p th:if="${#fields.hasErrors('population')}" th:errors="*{population}" style="color: red"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>GDP</th>
+                    <td><input type="text" th:field="*{GDP}"></td>
+                    <td><p th:if="${#fields.hasErrors('GDP')}" th:errors="*{GDP}" style="color: red"></p></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td><textarea th:field="*{description}" th:text="${city.description}"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </td>
+                    <td><a href="/" class="btn btn-primary">Exit</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

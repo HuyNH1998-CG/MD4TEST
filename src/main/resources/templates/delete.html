@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="home :: css">
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1>Delete City</h1><br>
+    </div>
+    <div class="row">
+        <p>Do you want to delete <span th:text="${city.name}"></span>?</p>
+    </div>
+    <div class="row">
+        <form method="post">
+            <table>
+                <tr>
+                    <td><button type="submit" class="btn btn-danger">Yes</button></td>
+                    <td><a href="/" class="btn btn-primary">No</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

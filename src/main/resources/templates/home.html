@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="css">
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1 th:if="${message}" th:text="${message}" style="color: red"></h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>City List</h1>
+        </div>
+        <div class="col-lg-4">
+            <a href="/createCity" class="btn btn-primary">Create City</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <tr style="background: grey; color: white" >
+                <th>#</th>
+                <th>City</th>
+                <th>Country</th>
+                <th></th>
+            </tr>
+            <tr th:each="city:${cities}">
+                <td th:text="${city.id}"></td>
+                <td><a th:href="@{/detail/{id}(id=${city.id})}" th:text="${city.name}"></a></td>
+                <td th:text="${city.country.name}"></td>
+                <td>
+                    <span><a th:href="@{/editCity/{id}(id=${city.id})}">Edit</a></span>|
+                    <span><a th:href="@{/deleteCity/{id}(id=${city.id})}">Delete</a></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
